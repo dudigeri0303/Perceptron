@@ -21,7 +21,7 @@ int main(void)
         ClearBackground(RAYWHITE);
         gui->Draw();
         EndDrawing();
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        std::this_thread::sleep_for(std::chrono::milliseconds(0));
     }
     CloseWindow();
     delete gui;

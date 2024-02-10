@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <random>
+#include <cmath>
 #include "raygui.h"
 #include "raylib.h"
 #include "Node.h"
@@ -17,7 +18,12 @@ private:
 	std::vector<Weight*> weights;
 	Node* outputNode;
 	InputDatas* inputDatas;
-	int desiredOutput;
+	//VARIABLES FOR CALCULATIONS
+	int desiredOutput = 0;
+	float threshold = 0.5f;
+	float error = 0.0f;
+	float learningRate = 0.05f;
+	float sigmoidResult = 0.0f;
 
 	void FeedInputs();
 	void FeedForward();
@@ -39,7 +45,6 @@ Perceptron::Perceptron(int numOfI, int xVal, int yVal) : numberOfInputs(numOfI),
 	}
 	outputNode = new Node(OUTPUT, 0.0f, 250, 275);
 	inputDatas = new InputDatas();
-	desiredOutput = 0;
 }
 
 Perceptron::~Perceptron(){
@@ -74,19 +79,32 @@ void Perceptron::FeedForward() {
 }
 
 void Perceptron::ActivationFunction() {
-
+	outputNode->value = 1.0f / (1.0f + std::exp(-1 * outputNode->value));
+	sigmoidResult = outputNode->value;
+	outputNode->value = outputNode->value >= threshold ? 1.0f : 0.0f;
 }
 
 void Perceptron::CalculateError() {
-
+	error = desiredOutput - outputNode->value;
 }
 
 void Perceptron::BackProp() {
-
+	for (int i = 0; i < inputNodes.size(); i++) {
+		weights[i]->value -= learningRate * ((2 * error) * -1 * (sigmoidResult * (1 - sigmoidResult)) * inputNodes[i]->value);
+		//std::cout << "KUTYAFASZA" << std::endl;
+		//std::cout<< i << "-" << weights[i]->value << std::endl;
+	}
+	std::cout << "output: " << outputNode->value << std::endl;
+	std::cout << "Doutput: " << desiredOutput << std::endl;
+	std::cout << "++++++++++++++++++++" << std::endl;
 }
 
 void Perceptron::Update() {
+	FeedInputs();
 	FeedForward();
+	ActivationFunction();
+	CalculateError();
+	BackProp();
 }
 
 void Perceptron::Draw() {

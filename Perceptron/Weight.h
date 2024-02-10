@@ -1,5 +1,6 @@
 #include <iostream>
 #include <random>
+#include <cmath>
 
 class Weight {
 private:
@@ -25,4 +26,6 @@ Weight::~Weight() {
 
 void Weight::Draw(int x1, int y1, int x2, int y2) {
 	DrawLine(x1, y1, x2, y2, BLACK);
+	DrawText(std::to_string(value).c_str(), (x2 + x1) / 2 - 25, (y2 + y1) / 2, 14, GREEN);
+	//std::cout << (x1 - x2) / 2 << "-" << (y1 - y2) / 2 << std::endl;
 }
