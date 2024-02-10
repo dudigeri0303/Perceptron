@@ -58,6 +58,7 @@ void Perceptron::Update() {
 }
 
 void Perceptron::Draw() {
+	DrawLine(outputNode->x, outputNode->y, x, y, BLACK);
 	for (int i = 0; i < weights.size(); i++) {
 		weights[i]->Draw(inputNodes[i]->x, inputNodes[i]->y, x, y);
 	}

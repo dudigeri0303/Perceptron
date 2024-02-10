@@ -39,4 +39,5 @@ void Node::Update() {
 
 void Node::Draw() {
     DrawCircle(x, y, radius, BLACK);
+    DrawText(std::to_string(value).c_str(), x - (int)radius - 10, y - (int)radius - 15, 14, BLACK);
 }
