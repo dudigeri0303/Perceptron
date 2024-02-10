@@ -22,7 +22,7 @@ private:
 	int desiredOutput = 0;
 	float threshold = 0.5f;
 	float error = 0.0f;
-	float learningRate = 0.05f;
+	float learningRate = 0.01f;
 	float sigmoidResult = 0.0f;
 
 	void FeedInputs();
@@ -39,10 +39,15 @@ public:
 
 Perceptron::Perceptron(int numOfI, int xVal, int yVal) : numberOfInputs(numOfI), x(xVal), y(yVal){
 	radius = 30.0f;
+
 	for (int i = 0; i < numberOfInputs; i++) {
 		inputNodes.push_back(new Node(INPUT, 1.0f, 50, 250 + i*50));
 		weights.push_back(new Weight());
 	}
+	
+	inputNodes.push_back(new Node(INPUT, 1.0f, 50, 250 + inputNodes.size() * 50));
+	weights.push_back(new Weight());
+	
 	outputNode = new Node(OUTPUT, 0.0f, 250, 275);
 	inputDatas = new InputDatas();
 }
