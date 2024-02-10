@@ -1,4 +1,6 @@
-#include<iostream>
+#include <iostream>
+#include <thread>
+#include <chrono>
 #include "raylib.h"
 #include "Gui.h"
 
@@ -19,6 +21,7 @@ int main(void)
         ClearBackground(RAYWHITE);
         gui->Draw();
         EndDrawing();
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
     CloseWindow();
     delete gui;

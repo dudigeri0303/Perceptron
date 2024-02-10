@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\PerceptronComponents">
+      <UniqueIdentifier>{e0f9890b-8c67-4fd6-b853-514f6f345ea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ui">
+      <UniqueIdentifier>{c4491ed6-570a-44ad-bfca-2416d1fae474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LogicInputDatas">
+      <UniqueIdentifier>{2c29e692-a9ec-4889-a55d-b14c15638d8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -20,17 +29,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Gui.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files\PerceptronComponents</Filter>
     </ClInclude>
     <ClInclude Include="Perceptron.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\PerceptronComponents</Filter>
     </ClInclude>
     <ClInclude Include="Weight.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\PerceptronComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui.h">
+      <Filter>Header Files\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDatas.h">
+      <Filter>Header Files\LogicInputDatas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
