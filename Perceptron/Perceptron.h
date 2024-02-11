@@ -6,7 +6,6 @@
 #include "raylib.h"
 #include "Node.h"
 #include "Weight.h"
-#include "InputDatas.h"
 
 class Perceptron{
 private:
@@ -14,18 +13,19 @@ private:
 	int x;
 	int y;
 	float radius;
-	std::vector<Node*> inputNodes;
-	std::vector<Weight*> weights;
-	Node* outputNode;
-	InputDatas* inputDatas;
 	//VARIABLES FOR CALCULATIONS
 	int desiredOutput = 0;
 	float threshold = 0.5f;
 	float error = 0.0f;
 	float learningRate = 0.01f;
 	float sigmoidResult = 0.0f;
+	//pointers
+	std::vector<Node*> inputNodes;
+	std::vector<Weight*> weights;
+	Node* outputNode;
+	//InputDatas* inputDatas;
 
-	void FeedInputs();
+	void FeedInputs(std::vector<std::vector<float>> inputDatas);
 	void FeedForward();
 	void ActivationFunction();
 	void CalculateError();
@@ -33,7 +33,7 @@ private:
 public:
 	Perceptron(int numOfI, int x, int y);
 	~Perceptron();
-	void Update();
+	void Update(std::vector<std::vector<float>> inputDatas);
 	void Draw();
 };
 
@@ -49,7 +49,7 @@ Perceptron::Perceptron(int numOfI, int xVal, int yVal) : numberOfInputs(numOfI),
 	weights.push_back(new Weight());
 	
 	outputNode = new Node(OUTPUT, 0.0f, 250, 275);
-	inputDatas = new InputDatas();
+	//inputDatas = new InputDatas();
 }
 
 Perceptron::~Perceptron(){
@@ -62,14 +62,14 @@ Perceptron::~Perceptron(){
 	}
 	weights.clear();
 	delete outputNode;
-	delete inputDatas;
+	//delete inputDatas;
 }
 
-void Perceptron::FeedInputs() {
+void Perceptron::FeedInputs(std::vector<std::vector<float>> inputDatas) {
 	std::random_device dev;
 	std::mt19937 rng(dev());
-	std::uniform_int_distribution<std::mt19937::result_type> dist6(0, inputDatas->andData.size() - 1);
-	std::vector<float> data = inputDatas->andData[dist6(rng)];
+	std::uniform_int_distribution<std::mt19937::result_type> dist6(0, inputDatas.size() - 1);
+	std::vector<float> data = inputDatas[dist6(rng)];
 	inputNodes[0]->value = data[0];
 	inputNodes[1]->value = data[1];
 	desiredOutput = data[2];
@@ -104,8 +104,8 @@ void Perceptron::BackProp() {
 	std::cout << "++++++++++++++++++++" << std::endl;
 }
 
-void Perceptron::Update() {
-	FeedInputs();
+void Perceptron::Update(std::vector<std::vector<float>> inputDatas) {
+	FeedInputs(inputDatas);
 	FeedForward();
 	ActivationFunction();
 	CalculateError();
