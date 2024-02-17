@@ -7,10 +7,10 @@ int main(void)
 #ifdef _DEBUG
 #define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #endif
-    Gui* gui = new Gui;
-    const int windowWidth = 1200;
-    const int windowHeight = 800;
+    const int windowWidth = 800;
+    const int windowHeight = 600;
     InitWindow(windowWidth, windowHeight, "Perceptron");
+    Gui* gui = new Gui;
 
     while (!WindowShouldClose())
     {

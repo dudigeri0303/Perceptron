@@ -6,17 +6,16 @@ class InputDatas {
 private:
 	std::vector<std::vector<float>> andData;
 	std::vector<std::vector<float>> orData;
-	std::vector<std::vector<float>> xorData;
 	std::vector<std::vector<float>> norData;
 	std::vector<std::vector<float>> nandData;
-	std::vector<std::vector<float>> exnorData;
 	std::vector<std::vector<float>> logicalImplicationData;
-	std::vector<std::vector<float>> doubleImplicationData;
+	void FillTextures();
 
 public:
 	int selectedDataIndex = 0;
 	std::vector<std::vector<std::vector<float>>> dataContainer;
 	std::vector<const char*> dataNames;
+	std::vector<Texture2D> gateTextures;
 
 	InputDatas();
 	~InputDatas();
@@ -37,12 +36,6 @@ InputDatas::InputDatas() {
 		{1.0, 0.0, 1.0},
 		{1.0, 1.0, 1.0}
 	};
-	xorData = {
-		{0.0, 0.0, 0.0},
-		{0.0, 1.0, 1.0},
-		{1.0, 0.0, 1.0},
-		{1.0, 1.0, 0.0}
-	};
 	norData = {
 		{0.0, 0.0, 1.0},
 		{0.0, 1.0, 0.0},
@@ -55,21 +48,9 @@ InputDatas::InputDatas() {
 		{1.0, 0.0, 1.0},
 		{1.0, 1.0, 0.0}
 	};
-	exnorData = {
-		{0.0, 0.0, 1.0},
-		{0.0, 1.0, 0.0},
-		{1.0, 0.0, 0.0},
-		{1.0, 1.0, 1.0}
-	};
 	logicalImplicationData = {
 		{0.0, 0.0, 1.0},
 		{0.0, 1.0, 1.0},
-		{1.0, 0.0, 0.0},
-		{1.0, 1.0, 1.0}
-	};
-	doubleImplicationData = {
-		{0.0, 0.0, 1.0},
-		{0.0, 1.0, 0.0},
 		{1.0, 0.0, 0.0},
 		{1.0, 1.0, 1.0}
 	};
@@ -77,24 +58,31 @@ InputDatas::InputDatas() {
 	dataContainer = {
 		andData,
 		orData,
-		xorData,
 		norData,
 		nandData,
-		exnorData,
-		logicalImplicationData,
-		doubleImplicationData
+		logicalImplicationData
 	};
 	dataNames = {
 		"AND",
 		"OR",
-		"XOR",
 		"NOR",
 		"NAND",
-		"EXNOR"
 		"LOGICAL IMPL"
-		"DOUBLE IMPL"
+	};
+	gateTextures = {
+		LoadTexture("GateImages/andGate.png"),
+		LoadTexture("GateImages/orGate.png"),
+		LoadTexture("GateImages/norGate.png"),
+		LoadTexture("GateImages/nandGate.png"),
+		LoadTexture("GateImages/logicalImplGate.png")
 	};
 }
+
+void InputDatas::FillTextures() {
+	
+
+}
+
 
 InputDatas::~InputDatas() {
 
