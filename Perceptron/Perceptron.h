@@ -13,13 +13,11 @@ private:
 	int x;
 	int y;
 	float radius;
-	//VARIABLES FOR CALCULATIONS
 	int desiredOutput = 0;
 	float threshold = 0.5f;
 	float error = 0.0f;
 	float learningRate = 0.01f;
 	float sigmoidResult = 0.0f;
-	//pointers
 	std::vector<Node*> inputNodes;
 	std::vector<Weight*> weights;
 	Node* outputNode;
@@ -39,10 +37,12 @@ public:
 Perceptron::Perceptron(int numOfI, int xVal, int yVal) : numberOfInputs(numOfI), x(xVal), y(yVal){
 	radius = 30.0f;
 	for (int i = 0; i < numberOfInputs + 1; i++) {
-		inputNodes.push_back(new Node(INPUT, 1.0f, 50, 50 + i*200));
+		inputNodes.push_back(new Node(1.0f, 50, 100 + i*150));
 		weights.push_back(new Weight());
 	}
-	outputNode = new Node(OUTPUT, 0.0f, 450, 250);
+	inputNodes[1]->x = inputNodes[2]->x;
+	inputNodes[1]->y = inputNodes[2]->y;
+	outputNode = new Node(0.0f, 550, 250);
 }
 
 Perceptron::~Perceptron(){
@@ -101,11 +101,11 @@ void Perceptron::Update(std::vector<std::vector<float>> inputDatas) {
 
 void Perceptron::Draw() {
 	DrawLine(outputNode->x, outputNode->y, x, y, BLACK);
-	for (int i = 0; i < weights.size(); i++) {
+	for (int i = 0; i < weights.size() - 1; i++) {
 		weights[i]->Draw(inputNodes[i]->x, inputNodes[i]->y, x, y);
 	}
-	for (auto n : inputNodes) {
-		n->Draw();
+	for (int j = 0; j < inputNodes.size() - 1; j++) {
+		inputNodes[j]->Draw();
 	}
 	outputNode->Draw();
 	DrawCircle(x, y, radius, RED);

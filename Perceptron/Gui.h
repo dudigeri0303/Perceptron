@@ -58,13 +58,13 @@ void Gui::HandleAndDrawDelaySlider() {
 }
 
 void Gui::HandleInputChooser() {
-	if (GuiButton({ 110, 500, 70, 30 }, "Previous!") && !calculating) {
+	if (GuiButton({ 150, 500, 60, 30 }, "Previous!") && !calculating) {
 		inputDatas->DecreaseSelectedDataIndex();
 	}
 
-	GuiLabel({ 180, 500, 90, 30 }, inputDatas->dataNames[inputDatas->selectedDataIndex]);
+	GuiLabel({ 212, 500, 50, 30 }, inputDatas->dataNames[inputDatas->selectedDataIndex]);
 
-	if (GuiButton({ 250, 500, 70, 30 }, "Next!") && !calculating) {
+	if (GuiButton({ 250, 500, 60, 30 }, "Next!") && !calculating) {
 		inputDatas->IncraseSelectedDataIndex();
 	}
 }

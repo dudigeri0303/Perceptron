@@ -9,7 +9,6 @@ private:
 	std::vector<std::vector<float>> norData;
 	std::vector<std::vector<float>> nandData;
 	std::vector<std::vector<float>> logicalImplicationData;
-	void FillTextures();
 
 public:
 	int selectedDataIndex = 0;
@@ -54,7 +53,6 @@ InputDatas::InputDatas() {
 		{1.0, 0.0, 0.0},
 		{1.0, 1.0, 1.0}
 	};
-
 	dataContainer = {
 		andData,
 		orData,
@@ -67,7 +65,7 @@ InputDatas::InputDatas() {
 		"OR",
 		"NOR",
 		"NAND",
-		"LOGICAL IMPL"
+		"L.IMPL."
 	};
 	gateTextures = {
 		LoadTexture("GateImages/andGate.png"),
@@ -78,14 +76,10 @@ InputDatas::InputDatas() {
 	};
 }
 
-void InputDatas::FillTextures() {
-	
-
-}
-
-
 InputDatas::~InputDatas() {
-
+	for (int i = 0; i < gateTextures.size(); i++) {
+		UnloadTexture(gateTextures[i]);
+	}
 }
 
 void InputDatas::IncraseSelectedDataIndex() {
