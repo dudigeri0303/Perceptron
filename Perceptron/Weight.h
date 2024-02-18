@@ -3,11 +3,9 @@
 #include <cmath>
 
 class Weight {
-private:
-
 public:
 	float value;
-	
+
 	Weight();
 	~Weight();
 	void Draw(int x1, int y1, int x2, int y2);
